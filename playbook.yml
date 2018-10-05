@@ -1,0 +1,8 @@
+---
+- name:  Replicacion PostgreSQL
+  hosts: all
+  tasks: 
+  - name: Copiar Docker compose.yml 
+    copy: src="./docker-compose.yml" dest=/tmp/docker-compose.yml
+- import_playbook: ./Master/playbook.yml
+- import_playbook: ./Slave/playbook.yml

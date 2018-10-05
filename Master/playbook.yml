@@ -1,0 +1,9 @@
+---
+- hosts: yvao10a0
+  tasks: 
+  - name: Comprobacion de existencia de carpeta
+    file: path="/tmp/Master" state=directory
+  - name: Copiar DockerFile Master
+    copy: src="./Dockerfile" dest=/tmp/Master/Dockerfile
+  - name: Copiar setup-master.sh
+    copy: src="./setup-master.sh" dest=/tmp/Master/setup-master.sh mode=0666

@@ -1,0 +1,30 @@
+version: "3"
+services:
+
+ pg_master:
+  build: /tmp/Master/
+  volumes:
+   - '/var/lib/postgresql/data'
+  expose:
+   - '5434'
+  environment:
+   - POSTGRES_USER=iria
+   - POSTGRES_PASSWORD=123456
+   - POSTGRES_DB=iria
+   - PG_REP_USER=rep
+   - PG_REP_PASSWORD=123456
+
+ pg_slave:
+  build: /tmp/Slave/
+  volumes:
+  - '/var/lib/postgresql/data'
+  expose:
+   - '5434'
+  environment:
+   - POSTGRES_USER=iria
+   - POSTGRES_PASSWORD=123456
+   - POSTGRES_DB=iria
+   - PG_REP_USER=rep
+   - PG_REP_PASSWORD=123456
+  links:
+   - 'pg_master'
